@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "mpn-run-start": "node app.js",
+    "npm-run-start": "node app.js",
     "start": "node index.js",
     "dev": "DEBUG=clinica-api:* nodemon index.js"
   },
