@@ -1,0 +1,95 @@
+/* Navbar.css */
+
+.navbar {
+  background-color: #343a40;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  height: 4rem;
+}
+
+.navbar img {
+  width: 70px;
+}
+
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.button-group {
+  display: flex;
+  gap: 30px;
+  /* Espacio entre los botones */
+}
+
+/* Estilo para el botón de cuenta */
+.account-button,
+.logout-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Estilo para el botón de cuenta al pasar el ratón sobre él */
+.account-button:hover,
+.logout-button:hover {
+  background-color: #555;
+}
+
+/* Estilo para los enlaces de React Router */
+.account-button {
+  color: white;
+  text-decoration: none;
+}
+
+/* Estilo para los enlaces al pasar el ratón sobre ellos */
+.account-button:hover {
+  text-decoration: underline;
+}
+
+.navbar .farmacia-button {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 15px;
+  margin-left: 20px;
+  /* Ajusta el espacio entre los botones */
+  border-radius: 4px;
+
+}
+
+.navbar .farmacia-button:hover {
+  background-color: #555;
+  /* Ajusta el color de fondo al pasar el ratón */
+}
+
+
+/* Media Query para dispositivos con un ancho máximo de 768px (puedes ajustar según sea necesario) */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-buttons {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .button-group {
+    flex-direction: row;
+  }
+
+  .account-button,
+  .logout-button {
+    width: auto;
+  }
+}

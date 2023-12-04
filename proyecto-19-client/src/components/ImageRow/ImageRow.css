@@ -1,0 +1,9 @@
+.image-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    
+
+   width: 100%;
+   height: 100%;
+  }

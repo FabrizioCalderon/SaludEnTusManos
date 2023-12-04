@@ -1,0 +1,228 @@
+.view-doctor {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.view-doctor .div {
+    height: 897px;
+    left: 26px;
+    position: absolute;
+    top: 17px;
+    width: 1378px;
+}
+
+.view-doctor .busqueda {
+    background-color: #d9d9d9;
+    border: 1px solid;
+    border-color: #000000;
+    height: 216px;
+    left: 0;
+    position: absolute;
+    top: 20rem;
+    width: 402px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.view-doctor .text1 {
+    color: #000000;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 20px;
+    font-weight: 600;
+    left: 38px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 32px;
+    width: 331px;
+}
+
+.view-doctor .my-2 {
+    height: 46px;
+    left: 20px;
+    position: absolute;
+    top: 155px;
+    width: 361px;
+    margin-top: 10px;
+}
+
+.view-doctor .buscar {
+    background-color: #d9d9d9;
+    height: 25px;
+    mix-blend-mode: hard-light;
+    position: absolute;
+    top: 0;
+    width: 353px;
+}
+
+.view-doctor .usuario {
+    height: 60px;
+    left: 175px;
+    position: absolute;
+    top: 65px;
+    width: 60px;
+    margin-top: 10px;
+}
+
+.view-doctor .citas {
+    background-color: #d9d9d9;
+    height: 216px;
+    left: 966px;
+    position: absolute;
+    top: 20rem;
+    width: 402px;
+}
+
+.view-doctor .text2 {
+    color: #000000;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 20px;
+    font-weight: 600;
+    left: 35px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 41px;
+    width: 331px;
+}
+
+.view-doctor .citasImg {
+    height: 60px;
+    left: 171px;
+    position: absolute;
+    top: 103px;
+    width: 60px;
+}
+
+.view-doctor .agenda {
+    background-color: #d9d9d9;
+    height: 216px;
+    left: 492px;
+    position: absolute;
+    top: 20rem;
+    width: 402px;
+}
+
+.view-doctor .text3 {
+    color: #000000;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 20px;
+    font-weight: 600;
+    left: 25px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 42px;
+    width: 331px;
+}
+
+.view-doctor .agendaImg {
+    height: 70px;
+    left: 165px;
+    position: absolute;
+    top: 94px;
+    width: 67px;
+}
+
+.view-doctor .farmacia {
+    background-color: #d9d9d9;
+    height: 216px;
+    left: 493px;
+    position: absolute;
+    top: 37rem;
+    width: 402px;
+}
+
+.view-doctor .farmaciaImg {
+    height: 100px;
+    left: 147px;
+    object-fit: cover;
+    position: absolute;
+    top: 88px;
+    width: 100px;
+}
+
+.griid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.view-doctor .text4 {
+    color: #000000;
+    font-family: "Poppins-SemiBold", Helvetica;
+    font-size: 20px;
+    font-weight: 600;
+    left: 36px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 45px;
+    width: 331px;
+}
+
+.view-doctor .p {
+    color: #000000;
+    font-family: "Poppins-Italic", Helvetica;
+    font-size: 48px;
+    font-style: italic;
+    font-weight: 400;
+    left: 36px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 5rem;
+    width: 436px;
+}
+
+/* Media Query para pantallas de hasta 424px */
+@media screen and (max-width: 424px) {
+    .div {
+        padding: 10px;
+    }
+
+    .citas,
+    .agenda,
+    .farmacia {
+        margin-top: 10px;
+    }
+}
+
+/* Media Query para pantallas de 425px a 767px */
+@media screen and (min-width: 425px) and (max-width: 767px) {
+    .div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .text1,
+    .text2,
+    .text3,
+    .text4,
+    .p {
+        font-size: 16px;
+    }
+
+    .usuario {
+        width: 40px;
+        height: 40px;
+    }
+
+    .citasImg,
+    .agendaImg,
+    .farmaciaImg {
+        width: 50px;
+        height: 50px;
+    }
+}

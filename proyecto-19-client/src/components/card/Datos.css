@@ -1,0 +1,12 @@
+
+.container-main {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  /* Resto de los estilos... */
+  width: 70%;
+}
+
+

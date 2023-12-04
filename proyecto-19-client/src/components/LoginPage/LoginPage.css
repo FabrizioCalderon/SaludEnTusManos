@@ -1,0 +1,34 @@
+/* LoginPage.css */
+
+.login-page {
+  display: flex;
+  height: 100vh;
+}
+
+.image-container {
+  flex: 1;
+  background-size: cover;
+}
+
+.form-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .login-page {
+    flex-direction: column; /* Cambia a dirección de columna en dispositivos más pequeños */
+  }
+
+  .image-container {
+    order: 2; /* Cambia el orden en dispositivos más pequeños */
+  }
+
+  .form-container {
+    order: 1; /* Cambia el orden en dispositivos más pequeños */
+  }
+}

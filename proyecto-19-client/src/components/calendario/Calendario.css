@@ -1,0 +1,128 @@
+
+
+body, html {
+    height: 100%;
+    margin: 0;
+    
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+  }
+  
+  .title {
+    margin-top: 50px;
+    font-size: 3rem;
+    
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    border-radius: 5px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  
+  }
+  
+  .daysOfWeek {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .dayOfWeek, .day {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    min-width: 40px;
+    min-height: 40px;
+  
+  }
+  
+  .day {
+    font-size: 1.2em;
+    width: 1%; 
+    height: 100px; 
+  }
+  
+  .dayOfWeek {
+    background-color: #252440;
+    color: white;
+  }
+  
+  .day.empty {
+    visibility: hidden;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px; 
+  }
+  
+  .weeksContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .week {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .customButton {
+    background-color: #153fca;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .customButton:hover {
+    background-color: #053ef7;
+  }
+  
+  
+  .phrases {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%; 
+  }
+  
+  .phrases p {
+    font-size: 1.2em;
+    margin-top: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    width: 30%; 
+    border-radius: 5px;
+  }
+  
+  
+  .phrases p.ocupado {
+    background-color: #87CEEB; 
+  }
+  
+  .phrases p.disponible {
+    background-color: #98FB98;
+  }
+  
+  .phrases p.no-disponible {
+    background-color: #FF6347; 
+  }
