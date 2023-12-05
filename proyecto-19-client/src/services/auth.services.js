@@ -35,5 +35,3 @@ export const registerUser = async (formData) => {
     }
   }
 };
-
-

@@ -1,47 +1,21 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SignUpimgdoc from "../../images/doc.png";
 import './signUp_Doc.css';
-import { registerUser } from '../../services/auth.services';
 
 const SignUpDoc = () => {
-    const navigate = useNavigate();
+    const [Name, setName] = useState('');
+    const [LastName, setLastName] = useState('');
+    const [dui, setDui] = useState('');
+    const [CreMed, setCreMed] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
-    const initialForm = {
-        nombre: "",
-        apellido: "",
-        dui: "",
-        credencial: "",
-        email: "",
-        telefono: "",
-        password: "",
-        confirmPassword: ""
-    };
-
-    const [formData, setFormData] = useState(initialForm);
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    }
-
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-
-        try {
-            const response = await registerUser(formData);
-
-            if (response[0] === 201) {
-                navigate("/login")
-            } else {
-                console.log("Usuario ya existe");
-            }
-
-        } catch (error) {
-            console.log(error);
-        }
+        //envío servidor
     }
 
     return (
@@ -52,17 +26,15 @@ const SignUpDoc = () => {
                         <input
                             type="text"
                             placeholder="Nombres"
-                            name="nombre"
-                            value={formData.nombre}
-                            onChange={handleChange}
+                            value={Name}
+                            onChange={(e) => setName(e.target.value)}
                             required
                         />
                         <input
                             type="text"
                             placeholder="Apellidos"
-                            name="apellido"
-                            value={formData.apellido}
-                            onChange={handleChange}
+                            value={LastName}
+                            onChange={(e) => setLastName(e.target.value)}
                             required
                         />
                     </div>
@@ -70,62 +42,57 @@ const SignUpDoc = () => {
                         <input
                             type="text"
                             placeholder="DUI (Número de Documento)"
-                            name="dui"
-                            value={formData.dui}
-                            onChange={handleChange}
+                            value={dui}
+                            onChange={(e) => setDui(e.target.value)}
                             required
                         />
                         <input
                             type="text"
                             placeholder="Credencial Médica"
-                            name="credencial"
-                            value={formData.credencial}
-                            onChange={handleChange}
-                        />
+                            value={CreMed}
+                            onChange={(e) => setCreMed(e.target.value)} />
                     </div>
                     <input
                         type="email"
                         placeholder="E-mail"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                     <input
                         type="tel"
                         placeholder="Número de Teléfono"
-                        name="telefono"
-                        value={formData.telefono}
-                        onChange={handleChange}
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
                         required
                     />
                     <div className="form-group">
                         <input
                             type="password"
                             placeholder="Contraseña"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             required
                         />
                         <input
                             type="password"
                             placeholder="Confirmar Contraseña"
-                            name="confirmPassword"
-                            value={formData.confirmPassword}
-                            onChange={handleChange}
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                             required
                         />
                     </div>
-                    
+                    <Link to="/doc">
                     <button type="submit">Registrarse</button>
-                   
+                    </Link>
+                    {/* Agrega un enlace para ir a la página de inicio de sesión */}
                     <p className="login-link">
                         ¿Ya tienes una cuenta? <Link to="/logindoc">Inicia sesión aquí</Link>
                     </p>
                 </form>
             </div>
             <div className="image-container">
+                {/* Puedes cambiar la imagen o el estilo según tus necesidades */}
                 <img src={SignUpimgdoc} alt="Descripción de la imagen" />
             </div>
         </div>
