@@ -1,6 +1,8 @@
-const { Schema, model } = require('mongoose');
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const Mongoose = require("mongoose");
+const Schema = Mongoose.Schema;
+
+const crypto = require("crypto");
+const debug = require("debug")("app:user-model");
 
 const userSchema = new mongoose.Schema({
   nombre: {
@@ -56,19 +58,34 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.pre('save', async function (next) {
-  const user = this;
-  if (!user.isModified('password')) return next();
+userSchema.methods = {
+  encryptPassword: function (password) {
+    if (!password) return "";
+    try {
+      const _password = crypto
+        .pbkdf2Sync(password, this.salt, 1000, 64, `sha512`)
+        .toString("hex");
 
-  console.log('Contraseña sin hashear:', user.password);
+      return _password;
+    } catch (error) {
+      debug(error);
+      return "";
+    }
+  },
+  makeSalt: function () {
+    return crypto.randomBytes(16).toString("hex");
+  },
+  comparedPassword: function (password) {
+    return this.hashedPassword === this.encryptPassword(password);
+  },
+};
 
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
+userSchema
+  .virtual("password")
+  .set(function (password = crypto.randomBytes(16).toString()) {
+    this.salt = this.makeSalt();
+    this.hashedPassword = this.encryptPassword(password);
+  });
 
-  console.log('Contraseña hasheada:', user.password);
-  next();
-});
-
-
-module.exports = model('User', userSchema);
+module.exports = Mongoose.model("User", userSchema);
 
