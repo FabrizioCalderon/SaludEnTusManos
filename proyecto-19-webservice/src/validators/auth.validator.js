@@ -1,6 +1,8 @@
 const {body} = require('express-validator');
 
-const registerUserValidator = [
+const validators = {};
+
+validators.registerUserValidator = [
         body('nombre')
             .not()
             .isEmpty()
@@ -27,4 +29,4 @@ const registerUserValidator = [
             .withMessage('El dui es obligatorio')
     ];
 
-module.exports = {registerUserValidator}
+module.exports = validators;
