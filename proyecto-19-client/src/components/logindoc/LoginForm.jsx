@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginForm.css';
-import { loginDoctor } from '../../services/auth.services';
+import { loginUser } from '../../services/auth.services';
 
 const LoginFormDoc = () => {
   const navigate = useNavigate();
 
   const initialForm = {
-    credencial: "",
+    dui: "",
     password: ""
   };
 
@@ -24,7 +24,7 @@ const LoginFormDoc = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await loginDoctor(formData);
+      const response = await loginUser(formData);
       if (response[0] === 200) {
         sessionStorage.setItem("token", response[1]);
         setSuccess(true);
@@ -39,7 +39,7 @@ const LoginFormDoc = () => {
 
   useEffect(() => {
     if (success) {
-      navigate("/doc");
+      navigate("/user");
     }
   }, [success]);
 
@@ -47,11 +47,11 @@ const LoginFormDoc = () => {
     <div className="login-container">
       <h2 className="login-title">Login</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="credencial" className="label-text">Credencial:</label>
+        <label htmlFor="dui" className="label-text">DUI:</label>
         <input
           type="text"
-          id="credencial"
-          name="credencial"
+          id="dui"
+          name="dui"
           onChange={handleChange}
         />
 
