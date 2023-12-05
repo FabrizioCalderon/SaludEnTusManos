@@ -35,8 +35,8 @@ const UserInfoPage = () => {
       <div className="user-info-container">
         <div className="personal-info">
           <div className="info-row">
-            <div>Nombres: {userData?.nombres}</div>
-            <div>Apellidos: {userData?.apellidos}</div>
+            <div>Nombres: {userData?.nombre}</div>
+            <div>Apellidos: {userData?.apellido}</div>
             <div>DUI: {userData?.dui}</div>
           </div>
           <div className="info-row">
