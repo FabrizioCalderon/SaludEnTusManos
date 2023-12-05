@@ -1,15 +1,14 @@
-const debug = require('debug')('clinica-api:db');
-const mongoose = require('mongoose');
-const envconfig = require('./env.config')
+const debug = require("debug")("app:clinica-api:db");
+const mongoose = require("mongoose");
 
-const uri = envconfig.MONGO_URI;
+const uri = process.env.MONGO_URI;
 const connect = async () => {
-    try {
-      await mongoose.connect(uri);
-      debug('Connected successfully to database!');
-    } catch (error) {
-      debug("[Error]: Can't connect to database!");
-    }
+  try {
+    await mongoose.connect(uri);
+    debug("Connected successfully to database!");
+  } catch (error) {
+    debug("[Error]: Can't connect to database!");
   }
+};
 
-  module.exports = { connect };
+module.exports = { connect };
