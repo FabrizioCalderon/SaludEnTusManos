@@ -1,38 +1,31 @@
-// UserInfoPage.js
-import React from 'react';
-import Navbar from '../Navbar/Navbar'; // Asume que tienes un componente Navbar separado
-import Sidebar from '../Sidebar/Sidebar'; // Asume que tienes un componente Sidebar separado
-import './User.css'; // Asume que tienes un archivo CSS separado para UserInfoPage
-
-import jwt_decode from 'jwt-decode';
-
-const TOKEN = sessionStorage.getItem('token');
-
-if (TOKEN) {
-  try {
-    const decodedToken = jwt_decode(TOKEN);
-
-    // `decodedToken` ahora contiene la información del usuario
-    console.log(decodedToken);
-
-    // Accede a datos específicos del usuario, por ejemplo:
-    const nombres = decodedToken.nombres;
-    const apellidos = decodedToken.apellidos;
-    const dui = decodedToken.dui;
-    const tipoSangre = decodedToken.tipoSangre;
-    const fechaNacimiento = decodedToken.fechaNacimiento;
-
-    // Ahora puedes usar estos datos como desees en tu componente UserInfoPage
-  } catch (error) {
-    console.error('Error al decodificar el token:', error);
-  }
-} else {
-  console.error('No se encontró un token de usuario.');
-}
-
-
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Navbar from '../Navbar/Navbar';
+import Sidebar from '../Sidebar/Sidebar';
+import './User.css';
+import { getUserData } from '../../services/auth.services'; // Asegúrate de ajustar la ruta según tu estructura de carpetas
 
 const UserInfoPage = () => {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const [status, data] = await getUserData();
+
+        if (status === 200) {
+          setUserData(data);
+        } else {
+          console.error("Error al obtener los datos del usuario:", status, data);
+        }
+      } catch (error) {
+        console.error("Error al obtener los datos del usuario:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   return (
     <div>
       {/* Navbar */}
@@ -42,19 +35,19 @@ const UserInfoPage = () => {
       <div className="user-info-container">
         <div className="personal-info">
           <div className="info-row">
-            <div>Nombres:{nombres} </div>
-            <div>Apellidos: {apellidos}</div>
-            <div>DUI: {dui}</div>
+            <div>Nombres: {userData?.nombres}</div>
+            <div>Apellidos: {userData?.apellidos}</div>
+            <div>DUI: {userData?.dui}</div>
           </div>
           <div className="info-row">
-            <div>Tipo de Sangre: {tipoSangre}</div>
-            <div>ID Paciente: 98765</div>
-            <div>Fecha de Nacimiento: {fechaNacimiento}</div>
-            <div>Ultimo Pesaje: 70 kg</div>
+            <div>Tipo de Sangre: {userData?.tipoSangre}</div>
+            <div>ID Paciente: {userData?.idPaciente}</div>
+            <div>Fecha de Nacimiento: {userData?.fechaNacimiento}</div>
+            <div>Ultimo Pesaje: {userData?.ultimoPesaje} kg</div>
           </div>
         </div>
 
-        {/* Barra de navegación y cuadricula */}
+        {/* Barra de navegación y cuadrícula */}
         <div className="dashboard">
           <Sidebar />
           <div className="grid-container">
