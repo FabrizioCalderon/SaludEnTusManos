@@ -19,7 +19,11 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors(origin = "*", methods = "*", allowedHeaders = "*", credentials = true));
+app.use(cors({
+    origin: 'https://salud-en-tus-manos.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+}))
 
 //Static routes
 app.use(express.static(path.join(__dirname, "public")));

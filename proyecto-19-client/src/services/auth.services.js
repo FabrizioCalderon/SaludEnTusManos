@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://cute-pear-eel-fez.cyclic.app/api/v1";
+axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
 
 export const loginUser = async (formData) => {
   try {
