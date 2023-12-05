@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import SignUpimgdoc from '../../images/doc.png';
+import { registerUser } from '../../services/auth.services';
 import './LoginForm.css';
 
 const LoginFormDoc = () => {
@@ -40,7 +42,7 @@ const LoginFormDoc = () => {
   
   useEffect(()=>{
     if(succes){
-      navigate("/user")
+      navigate("/doc")
     }
   },[succes])
 
