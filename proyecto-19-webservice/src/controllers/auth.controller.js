@@ -1,25 +1,39 @@
 // controllers/user.controller.js
-const User = require('../models/user.model');
+const User = require("../models/user.model");
 const { createToken, verifyToken } = require("../utils/jwt.tools");
 const controller = {};
 
-
 controller.register = async (req, res, next) => {
   try {
-    const { username, email, password } = req.body;
+    const {
+      nombre,
+      apellido,
+      password,
+      dui,
+      sexo,
+      fechaNacimiento,
+      tipoSangre,
+      email,
+      numeroTelefono,
+    } = req.body;
     const user = await User.findOne({
-      $or: [{ username: username }, { email: email }],
+      $or: [{ dui: dui }],
     });
 
     if (user) {
-      return res.status(409).json({ error: "User already exists" });
+      return res.status(409).json({ error: "El usuario ya existe" });
     }
 
     const newUser = new User({
-      username: username,
+      nombre: nombre,
+      apellido: apellido,
+      dui: dui,
+      sexo: sexo,
+      fechaNacimiento: fechaNacimiento,
+      tipoSangre: tipoSangre,
       email: email,
+      numeroTelefono: numeroTelefono,
       password: password,
-      roles: [ROLES.USER],
     });
 
     await newUser.save();
@@ -32,10 +46,10 @@ controller.register = async (req, res, next) => {
 
 controller.login = async (req, res, next) => {
   try {
-    const { identifier, password } = req.body;
+    const { dui, password } = req.body;
 
     const user = await User.findOne({
-      $or: [{ username: identifier }, { email: identifier }],
+      $or: [{ dui: dui }],
     });
 
     if (!user) {
@@ -70,5 +84,4 @@ controller.login = async (req, res, next) => {
   }
 };
 
-
-module.exports= controller;
+module.exports = controller;

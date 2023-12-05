@@ -4,7 +4,7 @@ const Schema = Mongoose.Schema;
 const crypto = require("crypto");
 const debug = require("debug")("app:user-model");
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   nombre: {
     type: String,
     required: true,
@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
   },
   sexo: {
     type: String,
-    enum: ['masculino', 'femenino'],
+    enum: ["masculino", "femenino"],
     required: true,
   },
   fechaNacimiento: {
@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
   },
   tipoSangre: {
     type: String,
-    enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+    enum: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
     required: true,
   },
   email: {
@@ -49,12 +49,17 @@ const userSchema = new mongoose.Schema({
     required: true,
     match: /^\d{8,15}$/,
   },
-  password: {
+
+  hashedPassword: {
     type: String,
     required: true,
-    minlength: 6,
-    maxlength: 100,
-    select: false, // No enviar la contraseña en las consultas por defecto
+  },
+  salt: {
+    type: String,
+  },
+  tokens: {
+    type: [String],
+    default: [],
   },
 });
 
@@ -88,4 +93,3 @@ userSchema
   });
 
 module.exports = Mongoose.model("User", userSchema);
-
