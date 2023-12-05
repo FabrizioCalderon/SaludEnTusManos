@@ -146,8 +146,8 @@ const SignUp = () => {
 
           <div className="form-group">
             <input
-              type="confirmpassword"
-              name='Confirm password'
+              type="password"
+              name='confirm password'
               placeholder="Confirmar Contraseña"
               value={formData.confirmPassword}
               onChange={handleChange}
