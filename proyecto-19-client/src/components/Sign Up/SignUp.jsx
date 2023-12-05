@@ -1,67 +1,79 @@
 // SignUp.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import Signupimg from '../../images/Signup.png';
 import '../../images/Signup.png'; // Importa tu archivo CSS
 import './SignUp.css'; // Importa tu archivo CSS
+import { registerUser } from '../../services/auth.services';
 
 const SignUp = () => {
-  const [nombres, setFirstName] = useState('');
-  const [apellidos, setLastName] = useState('');
-  const [dui, setDui] = useState('');
-  const [sexo, setGender] = useState('');
-  const [fechaNacimiento, setDob] = useState('');
-  const [tipoSangre, setBloodType] = useState('');
-  const [email, setEmail] = useState('');
-  const [numeroTelefono, setPhoneNumber] = useState('');
-  const [contrasena, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const initialForm={
+    nombre:"",
+    apellido:"",
+    dui:"",
+    sexo:"",
+    fechaNacimiento:"",
+    tipoSangre:"",
+    email:"",
+    numeroTelefono:"",
+    password:""
+  }
+
+  
+  const [formData,setFormData]=useState(initialForm);
+
+
+ 
+  const handleChange =(e)=>{
+    setFormData({
+      ...formData,[e.target.name]:e.target.value
+    })
+  }
+
+  const handleSubmit =async(e)=>{
     e.preventDefault();
-    // Lógica de envío al servidor...
-    try {
-      const response = await axios.post('http://localhost:3001/api/v1/user', {
-        "nombre": nombres,
-        "apellido": apellidos,
-        "dui": dui,
-        "sexo": sexo,
-        "fechaNacimiento": fechaNacimiento,
-        "tipoSangre": tipoSangre,
-        "email": email,
-        "numeroTelefono": numeroTelefono,
-        "password": contrasena,
-      });
 
-      // Manejar la respuesta del servidor según tus necesidades
-      console.log('Respuesta del servidor:', response.data);
-      history.push('/auth');
+    try {
+      const response= await registerUser(formData);
+
+      if(response[0]===201){
+        navigate("/login")
+      }else{
+        console.log("Usuario ya existe");
+      }
+
     } catch (error) {
-      // Manejar errores de la solicitud
-      console.error('Error al registrar usuario:', error);
+      console.log(error);
     }
-  };
+   
+  }
 
   return (
     <div className="signup-container">
       
       <div className="form-container">
        
-        <form className="signup-form" onSubmit={handleSubmit}>
+        <form className="signup-form" onSubmit={handleSubmit} >
           <div className="form-group">
             <input
               type="text"
               placeholder="Nombres"
-              value={nombres}
-              onChange={(e) => setFirstName(e.target.value)}
+              name='nombre'
+              value={formData.nombre}
+              onChange={handleChange}
               required
             />
             <input
               type="text"
               placeholder="Apellidos"
-              value={apellidos}
-              onChange={(e) => setLastName(e.target.value)}
+              name='apellido'
+              value={formData.apellido}
+              onChange={handleChange}
               required
             />
           </div>
@@ -69,13 +81,15 @@ const SignUp = () => {
             <input
               type="text"
               placeholder="DUI (Número de Documento)"
-              value={dui}
-              onChange={(e) => setDui(e.target.value)}
+              name='dui'
+              value={formData.dui}
+              onChange={handleChange}
               required
             />
             <select
-              value={sexo}
-              onChange={(e) => setGender(e.target.value)}
+              value={formData.sexo}
+              name='sexo'
+              onChange={handleChange}
               required
             >
               <option value="">Sexo</option>
@@ -87,45 +101,50 @@ const SignUp = () => {
             <input
               type="date"
               placeholder="Fecha de Nacimiento"
-              value={fechaNacimiento}
-              onChange={(e) => setDob(e.target.value)}
+              name='fechaNacimiento'
+              value={formData.fechaNacimiento}
+              onChange={handleChange}
               required
             />
             <input
               type="text"
               placeholder="Tipo de Sangre"
-              value={tipoSangre}
-              onChange={(e) => setBloodType(e.target.value)}
+              name='tipoSangre'
+              value={formData.tipoSangre}
+              onChange={handleChange}
               required
             />
           </div>
           <input
             type="email"
             placeholder="E-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name='email'
+            value={formData.email}
+            onChange={handleChange}
             required
           />
           <input
             type="tel"
             placeholder="Número de Teléfono"
-            value={numeroTelefono}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            name='numeroTelefono'
+            value={formData.numeroTelefono}
+            onChange={handleChange}
             required
           />
           <div className="form-group">
             <input
               type="password"
+              name='password'
               placeholder="Contraseña"
-              value={contrasena}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
               required
             />
         
           </div>
-          <Link to="/user">
+          
           <button type="submit">Registrarse</button>
-          </Link>
+          
               {/* Agregar enlace para ir a la página de inicio de sesión */}
         <p className="login-link">
           ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link>
