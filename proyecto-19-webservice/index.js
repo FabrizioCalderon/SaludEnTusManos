@@ -9,7 +9,6 @@ const database = require("./src/config/db.config");
 const mainRouter = require("./src/routes/main.router");
 const { errorHandler } = require("./src/middleware/error.middleware");
 
-//const CLIENT_URL = process.env.CLIENT_URL;
 const app = express();
 
 database.connect();
@@ -19,7 +18,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(cors({ origin: CLIENT_URL, credentials: true }));
+app.use(cors());
 
 //Static routes
 app.use(express.static(path.join(__dirname, "public")));
