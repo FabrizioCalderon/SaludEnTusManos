@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import SignUpimgdoc from "../../images/doc.png";
 import './signUp_Doc.css';
-import { registerDoctor } from '../../services/auth.services';
+import { registerUser } from '../../services/auth.services';
 
 const SignUpDoc = () => {
     const navigate = useNavigate();
@@ -31,10 +31,10 @@ const SignUpDoc = () => {
         e.preventDefault();
 
         try {
-            const response = await registerDoctor(formData);
+            const response = await registerUser(formData);
 
             if (response[0] === 201) {
-                navigate("/logindoc")
+                navigate("/login")
             } else {
                 console.log("Usuario ya existe");
             }
