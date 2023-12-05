@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://cute-pear-eel-fez.cyclic.app/api/v1";
+const BASE_URL = "http://localhost:3001/api/v1";
 
 export const createCita = async (formData) => {
   try {
