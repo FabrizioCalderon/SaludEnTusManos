@@ -14,7 +14,7 @@ const {errorHandler }= require('./src/middleware/error.middleware')
 const CLIENT_URL = process.env.CLIENT_URL;
 const app = express();
 
-database.connect();\
+database.connect();
 
 app.use(logger("dev"));
 
