@@ -11,7 +11,12 @@ const { errorHandler } = require("./src/middleware/error.middleware");
 
 //const CLIENT_URL = process.env.CLIENT_URL;
 const app = express();
-
+const corsOptions = {
+    origin: 'https://salud-en-tus-manos.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+}
+console.log(corsOptions);
 database.connect();
 
 app.use(logger("dev"));
@@ -19,11 +24,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors({
-    origin: 'https://salud-en-tus-manos.vercel.app',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-}))
+app.use(cors(corsOptions));
 
 //Static routes
 app.use(express.static(path.join(__dirname, "public")));
