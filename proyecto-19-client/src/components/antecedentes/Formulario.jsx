@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import moment from 'moment';
 
-const Formulario = ({ formData, setFormData, onSubmit }) => {
+const Formulario = ({ onSubmit, medicalInfoId }) => {
 
   const today = moment().format('DD-MM-YYYY');
 

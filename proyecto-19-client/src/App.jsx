@@ -7,7 +7,7 @@ import SignUpPa from './components/Sign Up/SignUp';
 import UserInfoPage from './components/User/User';
 import Farmacia from './components/farmacia/farmacia';
 import SignUpDoc from './components/signup_doc/signup_doc';
-import Antecedentes from './components/antecedentes/homeant';
+import Antecedentes from './components/antecedentes/Formulario';
 import Calendario from './components/calendario/Calendario';
 import Config from './components/configuracion/Config';
 import Card from './components/card/Cards';

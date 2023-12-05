@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
-import AddAntecedentesForm from './AddAntecedentesForm';
-import MostrarInfo from './MostrarInfo';
+import AddAntecedentesForm from './Formulario';
+import MostrarInfo from './mostrarInfo';
 
 
 const Homeant = () => {
