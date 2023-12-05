@@ -35,17 +35,3 @@ export const registerUser = async (formData) => {
     }
   }
 };
-
-
-export const getUserData = async () => {
-  try {
-    const response = await axios.get("/user"); // Asumiendo que hay un endpoint /user que devuelve los datos del usuario logeado.
-
-    if (response.status === 200) {
-      return [200, response.data];
-    }
-  } catch (error) {
-    console.error("Error al obtener los datos del usuario:", error);
-    return [500, "Internal Server Error"];
-  }
-};

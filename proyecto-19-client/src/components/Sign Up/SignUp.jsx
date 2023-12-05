@@ -21,8 +21,7 @@ const SignUp = () => {
     tipoSangre:"",
     email:"",
     numeroTelefono:"",
-    password:"",
-    confirmPassword:""
+    password:""
   }
 
   
@@ -132,28 +131,17 @@ const SignUp = () => {
             onChange={handleChange}
             required
           />
-         <div className="form-group">
-  <input
-    type="password"
-    name='password'
-    placeholder="Contraseña"
-    value={formData.password}
-    onChange={handleChange}
-    required
-  />
-</div>
-
-<div className="form-group">
-  <input
-    type="password"  // Corrige el tipo a 'password'
-    name='confirmPassword'  // Mantiene el nombre como 'confirmPassword'
-    placeholder="Confirmar Contraseña"
-    value={formData.confirmPassword}
-    onChange={handleChange}
-    required
-  />
-</div>
-          
+          <div className="form-group">
+            <input
+              type="password"
+              name='password'
+              placeholder="Contraseña"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+        
+          </div>
           
           <button type="submit">Registrarse</button>
           

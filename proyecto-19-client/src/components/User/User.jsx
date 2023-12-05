@@ -1,31 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Navbar from '../Navbar/Navbar';
-import Sidebar from '../Sidebar/Sidebar';
-import './User.css';
-import { getUserData } from '../../services/auth.services'; // Asegúrate de ajustar la ruta según tu estructura de carpetas
+// UserInfoPage.js
+import React from 'react';
+import Navbar from '../Navbar/Navbar'; // Asume que tienes un componente Navbar separado
+import Sidebar from '../Sidebar/Sidebar'; // Asume que tienes un componente Sidebar separado
+import './User.css'; // Asume que tienes un archivo CSS separado para UserInfoPage
 
 const UserInfoPage = () => {
-  const [userData, setUserData] = useState(null);
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const [status, data] = await getUserData();
-
-        if (status === 200) {
-          setUserData(data);
-        } else {
-          console.error("Error al obtener los datos del usuario:", status, data);
-        }
-      } catch (error) {
-        console.error("Error al obtener los datos del usuario:", error);
-      }
-    };
-
-    fetchUserData();
-  }, []);
-
   return (
     <div>
       {/* Navbar */}
@@ -35,19 +14,19 @@ const UserInfoPage = () => {
       <div className="user-info-container">
         <div className="personal-info">
           <div className="info-row">
-            <div>Nombres: {userData?.nombre}</div>
-            <div>Apellidos: {userData?.apellido}</div>
-            <div>DUI: {userData?.dui}</div>
+            <div>Nombres: John</div>
+            <div>Apellidos: Doe</div>
+            <div>DUI: 123456789</div>
           </div>
           <div className="info-row">
-            <div>Tipo de Sangre: {userData?.tipoSangre}</div>
-            <div>ID Paciente: {userData?.idPaciente}</div>
-            <div>Fecha de Nacimiento: {userData?.fechaNacimiento}</div>
-            <div>Ultimo Pesaje: {userData?.ultimoPesaje} kg</div>
+            <div>Tipo de Sangre: O+</div>
+            <div>ID Paciente: 98765</div>
+            <div>Fecha de Nacimiento: 01/01/1990</div>
+            <div>Ultimo Pesaje: 70 kg</div>
           </div>
         </div>
 
-        {/* Barra de navegación y cuadrícula */}
+        {/* Barra de navegación y cuadricula */}
         <div className="dashboard">
           <Sidebar />
           <div className="grid-container">
