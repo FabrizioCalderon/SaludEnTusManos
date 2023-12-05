@@ -21,7 +21,8 @@ const SignUp = () => {
     tipoSangre:"",
     email:"",
     numeroTelefono:"",
-    password:""
+    password:"",
+    confirmPassword:""
   }
 
   
@@ -137,6 +138,18 @@ const SignUp = () => {
               name='password'
               placeholder="Contraseña"
               value={formData.password}
+              onChange={handleChange}
+              required
+            />
+        
+          </div>
+
+          <div className="form-group">
+            <input
+              type="confirmpassword"
+              name='Confirm password'
+              placeholder="Confirmar Contraseña"
+              value={formData.confirmPassword}
               onChange={handleChange}
               required
             />
