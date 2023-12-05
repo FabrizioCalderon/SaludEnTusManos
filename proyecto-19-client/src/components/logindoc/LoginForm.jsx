@@ -9,24 +9,40 @@ const LoginFormDoc = () => {
     credencial: '',
     password: '',
   };
-
-  const [formData, setFormData] = useState(initialForm);
-  const [success, setSuccess] = useState(false);
-
-  const handleChange = (e) => {
+  const [formData,setFormData]=useState(initialForm);
+  const [succes,setSucces]=useState(false);
+  
+  
+  const handleChange =(e)=>{
     setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
+      ...formData,[e.target.name]:e.target.value
+    })
+  }
+  
+  
+  
+  const handleSubmit=async(e)=>{
     e.preventDefault();
-    // TODO: Add server submission logic
-
-    // For the sake of this example, consider it successful
-    setSuccess(true);
-  };
+    try {
+      const response = await loginUser(formData);
+      if (response[0]===200) {
+  
+        sessionStorage.setItem("token",response[1]);
+        setSucces(true);
+      }else {
+        console.log("user not found");
+        setSucces(false);
+      }
+    } catch (error) {
+      
+    }
+  }
+  
+  useEffect(()=>{
+    if(succes){
+      navigate("/user")
+    }
+  },[succes])
 
   return (
     <div className="login-container">
