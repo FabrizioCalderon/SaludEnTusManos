@@ -7,7 +7,7 @@ const LoginFormDoc = () => {
   const navigate = useNavigate();
 
   const initialForm = {
-    dui: "",
+    credencial: "",
     password: ""
   };
 

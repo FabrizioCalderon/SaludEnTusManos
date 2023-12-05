@@ -40,7 +40,7 @@ export const registerUser = async (formData) => {
 
 export const loginDoctor = async (formData) => {
   try {
-    const response = await axios.post("/doc/login", formData);
+    const response = await axios.post("/doctores/login", formData);
 
     if (response.status === 200) {
       return [200, response.data];
@@ -56,7 +56,7 @@ export const loginDoctor = async (formData) => {
 
 export const registerDoctor = async (formData) => {
   try {
-    const response = await axios.post("/doc/register", formData);
+    const response = await axios.post("/doctores/register", formData);
 
     if (response.status === 201) {
       return [201, response.data];
