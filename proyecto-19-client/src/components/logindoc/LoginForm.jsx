@@ -1,25 +1,74 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Asegúrate de importar el componente Link si estás utilizando React Router
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginForm.css';
+import { loginDoctor } from '../../services/auth.services';
 
 const LoginFormDoc = () => {
+  const navigate = useNavigate();
+
+  const initialForm = {
+    dui: "",
+    password: ""
+  };
+
+  const [formData, setFormData] = useState(initialForm);
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await loginDoctor(formData);
+      if (response[0] === 200) {
+        sessionStorage.setItem("token", response[1]);
+        setSuccess(true);
+      } else {
+        console.log("Usuario no encontrado");
+        setSuccess(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (success) {
+      navigate("/doc");
+    }
+  }, [success]);
+
   return (
     <div className="login-container">
       <h2 className="login-title">Login</h2>
-      <form>
-        <label htmlFor="username" className="label-text">Credencial:</label>
-        <input type="text" id="username" name="username" />
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="credencial" className="label-text">Credencial:</label>
+        <input
+          type="text"
+          id="credencial"
+          name="credencial"
+          onChange={handleChange}
+        />
 
         <label htmlFor="password" className="label-text">Contraseña:</label>
-        <input type="password" id="password" name="password" />
-        <Link to="/doc">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          onChange={handleChange}
+        />
+        
         <button type="submit">Iniciar sesión</button>
-        </Link>
       </form>
 
       {/* Agrega un enlace para ir a la página de registro */}
       <p className="signup-link">
-        ¿No tienes una cuenta? <Link to="/registerdoc">Regístrate aquí</Link>
+        ¿No tienes una cuenta? <Link to="/registerPa">Regístrate aquí</Link>
       </p>
     </div>
   );
