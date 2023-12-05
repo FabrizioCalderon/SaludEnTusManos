@@ -14,7 +14,7 @@ const AddCitaForm = () => {
         try {
             console.log('Sending request with data:', { nombre_paciente, hora_cita, fecha_cita });
 
-            const response = await axios.post('http://localhost:3001/api/v1/citas', {
+            const response = await axios.post('https://cute-pear-eel-fez.cyclic.app/api/v1/citas', {
                 nombre_paciente,
                 hora_cita,
                 fecha_cita,
