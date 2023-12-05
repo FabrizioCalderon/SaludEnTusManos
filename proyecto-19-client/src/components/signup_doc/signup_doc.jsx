@@ -4,87 +4,135 @@ import SignUpimgdoc from "../../images/doc.png";
 import './signUp_Doc.css';
 
 const SignUpDoc = () => {
-    const [Name, setName] = useState('');
-    const [LastName, setLastName] = useState('');
-    const [dui, setDui] = useState('');
-    const [CreMed, setCreMed] = useState('');
-    const [email, setEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+    
+    const initialForm={
+        nombre:"",
+        apellido:"",
+        dui:"",
+        credencial:"",
+        email:"",
+        telefono:"",
+        password:"",
+        confirmPassword:""
+      }
+
+      const [formData,setFormData]=useState(initialForm);
+    
+
+
+      const handleChange =(e)=>{
+        setFormData({
+          ...formData,[e.target.name]:e.target.value
+        })
+      }
+    
+      const handleSubmit =async(e)=>{
         e.preventDefault();
-        //envío servidor
-    }
+    
+        try {
+          const response= await registerUser(formData);
+    
+          if(response[0]===201){
+            navigate("/login")
+          }else{
+            console.log("Usuario ya existe");
+          }
+    
+        } catch (error) {
+          console.log(error);
+        }
+       
+      }
+
+    
 
     return (
-        <div className="signup-doc">
-            <div className="form-container">
-                <form className="signup-form" onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            placeholder="Nombres"
-                            value={Name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                        />
-                        <input
-                            type="text"
-                            placeholder="Apellidos"
-                            value={LastName}
-                            onChange={(e) => setLastName(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <input
-                            type="text"
-                            placeholder="DUI (Número de Documento)"
-                            value={dui}
-                            onChange={(e) => setDui(e.target.value)}
-                            required
-                        />
-                        <input
-                            type="text"
-                            placeholder="Credencial Médica"
-                            value={CreMed}
-                            onChange={(e) => setCreMed(e.target.value)} />
-                    </div>
-                    <input
-                        type="email"
-                        placeholder="E-mail"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="tel"
-                        placeholder="Número de Teléfono"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        required
-                    />
-                    <div className="form-group">
-                        <input
-                            type="password"
-                            placeholder="Contraseña"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                        <input
-                            type="password"
-                            placeholder="Confirmar Contraseña"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <Link to="/doc">
+        <div className="signup-container">
+      
+        <div className="form-container">
+         
+          <form className="signup-form" onSubmit={handleSubmit} >
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Nombres"
+                name='nombre'
+                value={formData.nombre}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Apellidos"
+                name='apellido'
+                value={formData.apellido}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="DUI (Número de Documento)"
+                name='dui'
+                value={formData.dui}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Credencial Médica"
+                name='credencial'
+                value={formData.credencial}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+            <input
+            type="email"
+            placeholder="E-mail"
+            name='email'
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+             <input
+            type="tel"
+            placeholder="Número de Teléfono"
+            name='numeroTelefono'
+            value={formData.numeroTelefono}
+            onChange={handleChange}
+            required
+          />
+            </div>
+           
+           
+           <div className="form-group">
+    <input
+      type="password"
+      name='password'
+      placeholder="Contraseña"
+      value={formData.password}
+      onChange={handleChange}
+      required
+    />
+  </div>
+  
+  <div className="form-group">
+    <input
+      type="password"  // Corrige el tipo a 'password'
+      name='confirmPassword'  // Mantiene el nombre como 'confirmPassword'
+      placeholder="Confirmar Contraseña"
+      value={formData.confirmPassword}
+      onChange={handleChange}
+      required
+    />
+  </div>
+                
                     <button type="submit">Registrarse</button>
-                    </Link>
                     {/* Agrega un enlace para ir a la página de inicio de sesión */}
                     <p className="login-link">
                         ¿Ya tienes una cuenta? <Link to="/logindoc">Inicia sesión aquí</Link>
