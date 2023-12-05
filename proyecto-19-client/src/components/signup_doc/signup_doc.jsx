@@ -31,7 +31,7 @@ const SignUpDoc = () => {
         e.preventDefault();
 
         try {
-            const response = await registerDoc(formData);
+            const response = await registerDoctor(formData);
 
             if (response[0] === 201) {
                 navigate("/logindoc")
