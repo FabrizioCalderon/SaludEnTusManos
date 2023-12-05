@@ -1,4 +1,3 @@
-// controllers/user.controller.js
 const User = require("../models/user.model");
 const { createToken, verifyToken } = require("../utils/jwt.tools");
 const controller = {};
