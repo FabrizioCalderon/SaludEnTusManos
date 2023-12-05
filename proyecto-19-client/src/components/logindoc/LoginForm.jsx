@@ -1,23 +1,51 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Asegúrate de importar el componente Link si estás utilizando React Router
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 
 const LoginFormDoc = () => {
+  const navigate = useNavigate();
+
+  const initialForm = {
+    credencial: '',
+    password: '',
+  };
+
+  const [formData, setFormData] = useState(initialForm);
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: Add server submission logic
+
+    // For the sake of this example, consider it successful
+    setSuccess(true);
+  };
+
   return (
     <div className="login-container">
       <h2 className="login-title">Login</h2>
-      <form>
-        <label htmlFor="username" className="label-text">Credencial:</label>
-        <input type="text" id="username" name="username" />
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="credencial" className="label-text">
+          Credencial:
+        </label>
+        <input type="text" id="credencial" name="credencial" onChange={handleChange} />
 
-        <label htmlFor="password" className="label-text">Contraseña:</label>
-        <input type="password" id="password" name="password" />
-        <Link to="/doc">
+        <label htmlFor="password" className="label-text">
+          Contraseña:
+        </label>
+        <input type="password" id="password" name="password" onChange={handleChange} />
+
         <button type="submit">Iniciar sesión</button>
-        </Link>
       </form>
 
-      {/* Agrega un enlace para ir a la página de registro */}
+      {/* Agregar un enlace para ir a la página de registro */}
       <p className="signup-link">
         ¿No tienes una cuenta? <Link to="/registerdoc">Regístrate aquí</Link>
       </p>
