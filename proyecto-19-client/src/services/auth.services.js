@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'https://cute-pear-eel-fez.cyclic.app/api/v1';
+axios.defaults.baseURL = 'https://good-slug-tux.cyclic.app/api/v1';
 axios.defaults.withCredentials = true;
 
 export const loginUser = async (formData) => {
