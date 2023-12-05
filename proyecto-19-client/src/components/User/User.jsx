@@ -4,6 +4,34 @@ import Navbar from '../Navbar/Navbar'; // Asume que tienes un componente Navbar 
 import Sidebar from '../Sidebar/Sidebar'; // Asume que tienes un componente Sidebar separado
 import './User.css'; // Asume que tienes un archivo CSS separado para UserInfoPage
 
+import jwt_decode from 'jwt-decode';
+
+const TOKEN = sessionStorage.getItem('token');
+
+if (TOKEN) {
+  try {
+    const decodedToken = jwt_decode(TOKEN);
+
+    // `decodedToken` ahora contiene la información del usuario
+    console.log(decodedToken);
+
+    // Accede a datos específicos del usuario, por ejemplo:
+    const nombres = decodedToken.nombres;
+    const apellidos = decodedToken.apellidos;
+    const dui = decodedToken.dui;
+    const tipoSangre = decodedToken.tipoSangre;
+    const fechaNacimiento = decodedToken.fechaNacimiento;
+
+    // Ahora puedes usar estos datos como desees en tu componente UserInfoPage
+  } catch (error) {
+    console.error('Error al decodificar el token:', error);
+  }
+} else {
+  console.error('No se encontró un token de usuario.');
+}
+
+
+
 const UserInfoPage = () => {
   return (
     <div>
@@ -14,14 +42,14 @@ const UserInfoPage = () => {
       <div className="user-info-container">
         <div className="personal-info">
           <div className="info-row">
-            <div>Nombres: John</div>
-            <div>Apellidos: Doe</div>
-            <div>DUI: 123456789</div>
+            <div>Nombres:{nombres} </div>
+            <div>Apellidos: {apellidos}</div>
+            <div>DUI: {dui}</div>
           </div>
           <div className="info-row">
-            <div>Tipo de Sangre: O+</div>
+            <div>Tipo de Sangre: {tipoSangre}</div>
             <div>ID Paciente: 98765</div>
-            <div>Fecha de Nacimiento: 01/01/1990</div>
+            <div>Fecha de Nacimiento: {fechaNacimiento}</div>
             <div>Ultimo Pesaje: 70 kg</div>
           </div>
         </div>
