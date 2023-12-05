@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001/api/v1";
+const BASE_URL = "mongodb+srv://admin:wHkwdBLw7RVY2sIp@cluster0.zbarl1m.mongodb.net/clinica-proyecto?retryWrites=true&w=majority";
 
 export const createCita = async (formData) => {
   try {
