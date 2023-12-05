@@ -1,5 +1,5 @@
 // controllers/signupdoc.controller.js
-const Doctor = require("../models/doctor.model");
+const Doctor = require("../models/doc.model");
 const { createToken } = require("../utils/jwt.tools");
 const controller = {};
 
