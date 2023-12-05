@@ -1,6 +1,7 @@
 const {body} = require('express-validator');
 
 const validators = {};
+const passwordRegexp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,32})/;
 
 validators.registerUserValidator = [
         body('nombre')
@@ -22,7 +23,9 @@ validators.registerUserValidator = [
             .isEmpty()
             .withMessage('El password es obligatorio')
             .isLength({min: 6})
-            .withMessage('El password debe tener al menos 6 caracteres'),
+            .withMessage('El password debe tener al menos 6 caracteres').matches(passwordRegexp)
+    .withMessage("Password format incorret")   
+        ,
         body('dui')
             .not()
             .isEmpty()
