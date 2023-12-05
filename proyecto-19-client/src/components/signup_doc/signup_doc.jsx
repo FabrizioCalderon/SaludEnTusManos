@@ -11,11 +11,9 @@ const SignUpDoc = () => {
         nombre: "",
         apellido: "",
         dui: "",
-        sexo: "",  // Agrega 'sexo' al estado inicial
-        fechaNacimiento: "",  // Agrega 'fechaNacimiento' al estado inicial
-        tipoSangre: "",  // Agrega 'tipoSangre' al estado inicial
+        credencial: "",
         email: "",
-        numeroTelefono: "",
+        telefono: "",
         password: "",
         confirmPassword: ""
     };
@@ -36,7 +34,7 @@ const SignUpDoc = () => {
             const response = await registerUser(formData);
 
             if (response[0] === 201) {
-                navigate("/login");
+                navigate("/login")
             } else {
                 console.log("Usuario ya existe");
             }
@@ -47,14 +45,14 @@ const SignUpDoc = () => {
     }
 
     return (
-        <div className="signup-container">
+        <div className="signup-doc">
             <div className="form-container">
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <input
                             type="text"
                             placeholder="Nombres"
-                            name='nombre'
+                            name="nombre"
                             value={formData.nombre}
                             onChange={handleChange}
                             required
@@ -62,7 +60,7 @@ const SignUpDoc = () => {
                         <input
                             type="text"
                             placeholder="Apellidos"
-                            name='apellido'
+                            name="apellido"
                             value={formData.apellido}
                             onChange={handleChange}
                             required
@@ -72,44 +70,23 @@ const SignUpDoc = () => {
                         <input
                             type="text"
                             placeholder="DUI (Número de Documento)"
-                            name='dui'
+                            name="dui"
                             value={formData.dui}
-                            onChange={handleChange}
-                            required
-                        />
-                        <select
-                            value={formData.sexo}
-                            name='sexo'
-                            onChange={handleChange}
-                            required
-                        >
-                            <option value="">Sexo</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="femenino">Femenino</option>
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <input
-                            type="date"
-                            placeholder="Fecha de Nacimiento"
-                            name='fechaNacimiento'
-                            value={formData.fechaNacimiento}
                             onChange={handleChange}
                             required
                         />
                         <input
                             type="text"
-                            placeholder="Tipo de Sangre"
-                            name='tipoSangre'
-                            value={formData.tipoSangre}
+                            placeholder="Credencial Médica"
+                            name="credencial"
+                            value={formData.credencial}
                             onChange={handleChange}
-                            required
                         />
                     </div>
                     <input
                         type="email"
                         placeholder="E-mail"
-                        name='email'
+                        name="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
@@ -117,35 +94,32 @@ const SignUpDoc = () => {
                     <input
                         type="tel"
                         placeholder="Número de Teléfono"
-                        name='numeroTelefono'
-                        value={formData.numeroTelefono}
+                        name="telefono"
+                        value={formData.telefono}
                         onChange={handleChange}
                         required
                     />
                     <div className="form-group">
                         <input
                             type="password"
-                            name='password'
                             placeholder="Contraseña"
+                            name="password"
                             value={formData.password}
                             onChange={handleChange}
                             required
                         />
-                    </div>
-
-                    <div className="form-group">
                         <input
                             type="password"
-                            name='confirmPassword'
                             placeholder="Confirmar Contraseña"
+                            name="confirmPassword"
                             value={formData.confirmPassword}
                             onChange={handleChange}
                             required
                         />
                     </div>
-
+                    
                     <button type="submit">Registrarse</button>
-
+                   
                     <p className="login-link">
                         ¿Ya tienes una cuenta? <Link to="/logindoc">Inicia sesión aquí</Link>
                     </p>
